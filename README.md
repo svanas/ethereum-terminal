@@ -27,11 +27,11 @@ Use `$ et [command] --help` for more information about a command.
 
 ## privacy & security
 
-| command           | description                                                                                                                                               |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [revoke](#revoke) | un-approve every EOA plus every smart contract that is a proxy (not immutable), or isn’t [Etherscan](https://etherscan.io/)-verified, or has an admin key |
-| [detect](#detect) | detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned)                              |
-| migrate | transfer all your tokens to a new, fresh wallet if your private key is compromised or you want to revoke every token approval                             |
+| command             | description                                                                                                                                               |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [revoke](#revoke)   | un-approve every EOA plus every smart contract that is a proxy (not immutable), or isn’t [Etherscan](https://etherscan.io/)-verified, or has an admin key |
+| [detect](#detect)   | detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned)                              |
+| [migrate](#migrate) | transfer all your tokens to a new, fresh wallet if your private key is compromised or you want to revoke every token approval                             |
 
 Note: if a command needs a private key to complete, it will return one or more unsigned transactions plus user-friendly metadata about the transactions. This allows for wallets to prompt the user, display something nice, sign the transactions, and send the raw transactions to the nearest RPC endpoint.
 
