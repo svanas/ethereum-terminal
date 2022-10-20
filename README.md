@@ -1,7 +1,5 @@
 # ethereum-terminal
 
-<style>table th:first-of-type {width: 100px}</style>
-
 Ethereum Terminal (ET) is an EVM-compatible toolbox chock-full of commands for developers, wallets, and savvy users.
 
 Usage: `$ et [command] [options]`
@@ -12,7 +10,16 @@ ET is available for download as a CLI for the following platforms:
 * macOS Intel
 * macOS ARM
 
-Linux users can clone this repository and compile from source.
+Note: Linux users can clone this repository and compile from source.
+
+ET supports the following EVM-compatible chains:
+* [Ethereum](https://ethereum.org/)
+* [Arbitrum](https://arbitrum.io/)
+* [Optimism](https://optimism.io/)
+* [Polygon](https://polygon.technology/)
+* [Gnosis Chain](https://www.gnosischain.com/)
+* [BNB Chain](https://www.bnbchain.org/)
+* [Fantom](https://fantom.foundation/)
 
 ## Commands
 
@@ -72,13 +79,13 @@ Get the annual percentage yield for any [EIP-4626](https://eips.ethereum.org/EIP
 
 Usage: `$ et get-apy [options]`
 
-| option       | description                                                                                                        | type   | mandatory |
-|--------------|--------------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1))                       | int    | no        |
-| `--contract` | address of an [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract, or highest APY on the chain if omitted | hex    | no        |
-| `--symbol`   | ERC-20 symbol of the underlying asset, or                                                                          | string | no        |
-| `--address`  | ERC-20 token address of the underlying asset                                                                       | hex    | no        |
-| `--period`   | sampled period in days. likely values are `1` or `3` or `7` or `14` of `31`. defaults to `14` days if omitted      | int    | no        |
+| option     | description                                                                                                        | type   | mandatory |
+|------------|--------------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1))                       | int    | no        |
+| `contract` | address of an [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract, or highest APY on the chain if omitted | hex    | no        |
+| `symbol`   | ERC-20 symbol of the underlying asset, or                                                                          | string | no        |
+| `address`  | ERC-20 token address of the underlying asset                                                                       | hex    | no        |
+| `period`   | sampled period in days. likely values are `1` or `3` or `7` or `14` of `31`. defaults to `14` days if omitted      | int    | no        |
 
 Example: `$ et get-apy --contract=0x690E382baD9016F688Cfc18AF306e1fDD6CB28E8`
 
@@ -88,15 +95,15 @@ Deposit your idle stable asset into a DeFi protocol with the highest APY or the 
 
 Usage: `$ et deposit [options]`
 
-| option       | description                                                                                  | type   | mandatory |
-|--------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--contract` | address of an [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract, or               | hex    | no        |
-| `--apy`      | `highest` or `safest`                                                                        | string | no        |
-| `--owner`    | address of the depositor                                                                     | hex    | yes       |
-| `--symbol`   | ERC-20 symbol of the underlying asset, or                                                    | string | no        |
-| `--address`  | ERC-20 token address of the underlying asset                                                 | hex    | no        |
-| `--amount`   | amount of the underlying asset, or your entire balance of the underlying asset if omitted    | bigint | no        |
+| option     | description                                                                                  | type   | mandatory |
+|------------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `contract` | address of an [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract, or               | hex    | no        |
+| `apy`      | `highest` or `safest`                                                                        | string | no        |
+| `owner`    | address of the depositor                                                                     | hex    | yes       |
+| `symbol`   | ERC-20 symbol of the underlying asset, or                                                    | string | no        |
+| `address`  | ERC-20 token address of the underlying asset                                                 | hex    | no        |
+| `amount`   | amount of the underlying asset, or your entire balance of the underlying asset if omitted    | bigint | no        |
 
 Example: `$ et deposit --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --apy=highest --symbol=DAI`
 
@@ -110,14 +117,14 @@ Burn your LP tokens and claim the underlying asset.
 
 Usage: `$ et withdraw [options]`
 
-| option       | description                                                                                                    | type   | mandatory |
-|--------------|----------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1))                   | int    | no        |
-| `--contract` | address of an EIP-4626 contract, or [all known EIP-4626 contracts](https://erc4626.info/#vaultscan) if omitted | hex    | no        |
-| `--owner`    | address of the depositor                                                                                       | hex    | yes       |
-| `--symbol`   | ERC-20 symbol of the underlying asset, or                                                                      | string | no        |
-| `--address`  | ERC-20 token address of the underlying asset                                                                   | hex    | no        |
-| `--amount`   | amount of the underlying asset, or your entire balance of LP tokens if omitted                                 | bigint | no        |
+| option     | description                                                                                                    | type   | mandatory |
+|------------|----------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1))                   | int    | no        |
+| `contract` | address of an EIP-4626 contract, or [all known EIP-4626 contracts](https://erc4626.info/#vaultscan) if omitted | hex    | no        |
+| `owner`    | address of the depositor                                                                                       | hex    | yes       |
+| `symbol`   | ERC-20 symbol of the underlying asset, or                                                                      | string | no        |
+| `address`  | ERC-20 token address of the underlying asset                                                                   | hex    | no        |
+| `amount`   | amount of the underlying asset, or your entire balance of LP tokens if omitted                                 | bigint | no        |
 
 Example: `$ et withdraw --contract=0x690E382baD9016F688Cfc18AF306e1fDD6CB28E8 --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 
@@ -127,10 +134,10 @@ Get your account's balance in wei.
 
 Usage: `$ et get-balance [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--owner` | address of the owner                                                                         | hex    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `owner` | address of the owner                                                                         | hex    | yes       |
 
 Example: `$ et get-balance --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 
@@ -140,9 +147,9 @@ Get current gas price in wei.
 
 Usage: `$ et get-gas-price [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
 
 Example: `$ et get-gas-price`
 
@@ -154,9 +161,9 @@ Get current block number.
 
 Usage: `$ et get-block-number [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
 
 Example: `$ et get-block-number`
 
@@ -166,10 +173,10 @@ Get a transaction's data.
 
 Usage: `$ et get-transaction [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--hash`  | a transaction hash                                                                           | hex    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `hash`  | a transaction hash                                                                           | hex    | yes       |
 
 Example: `$ et get-transaction --hash=0x9b629147b75dc0b275d478fa34d97c5d4a26926457540b15a5ce871df36c23fd`
 
@@ -179,10 +186,10 @@ Get the receipt of a completed transaction.
 
 Usage: `$ et get-receipt [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--hash`  | a transaction hash                                                                           | hex    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `hash`  | a transaction hash                                                                           | hex    | yes       |
 
 Example: `$ et get-receipt --hash=0x9b629147b75dc0b275d478fa34d97c5d4a26926457540b15a5ce871df36c23fd`
 
@@ -192,10 +199,10 @@ Get the revert reason for a failed transaction.
 
 Usage: `$ et get-reason [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--hash`  | a transaction hash                                                                           | hex    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `hash`  | a transaction hash                                                                           | hex    | yes       |
 
 Usage: `$ et get-reason hash=0xf212cc42d0eded75041225d71da6c3a8348bdb9102f2b73434b480419d31d69a`
 
@@ -205,10 +212,10 @@ Open transaction in a block explorer.
 
 Usage: `$ et open [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--hash`  | a transaction hash                                                                           | hex    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `hash`  | a transaction hash                                                                           | hex    | yes       |
 
 Example: `$ et open --hash=0x9b629147b75dc0b275d478fa34d97c5d4a26926457540b15a5ce871df36c23fd`
 
@@ -218,11 +225,11 @@ Cancel a pending transaction.
 
 Usage: `$ et cancel [options]`
 
-| option    | description                                                                                  | type   | mandatory |
-|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--from`  | the address of the sender                                                                    | hex    | yes       |
-| `--nonce` | a transaction counter                                                                        | int    | yes       |
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `from`  | the address of the sender                                                                    | hex    | yes       |
+| `nonce` | a transaction counter                                                                        | int    | yes       |
 
 Example: `$ et cancel --from=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --nonce=999`
 
@@ -234,10 +241,10 @@ Usage: `$ et get-price [options]`
 
 Get [Chainlink](https://chain.link/)'s oracle price for an asset in USD.
 
-| option     | description                                                                                  | type   | mandatory |
-|------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`  | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--symbol` | a token symbol                                                                               | string | yes       |
+| option   | description                                                                                  | type   | mandatory |
+|----------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`  | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `symbol` | a token symbol                                                                               | string | yes       |
 
 Example: `$ et get-price --symbol=ETH`
 
@@ -247,9 +254,9 @@ Usage: `$ et resolve [options]`
 
 Resolve an [ENS](https://ens.domains/) name to an Ethereum address.
 
-| option   | description | type   | mandatory |
-|----------|-------------|--------|-----------|
-| `--name` | an ENS name | string | yes       |
+| option | description | type   | mandatory |
+|--------|-------------|--------|-----------|
+| `name` | an ENS name | string | yes       |
 
 Example: `$ et resolve --name=thecoinoffering.eth`
 
@@ -259,9 +266,9 @@ Reverse resolution from an Ethereum address to an [ENS](https://ens.domains/) na
 
 Usage: `$ et reverse [options]`
 
-| option      | description         | type | mandatory |
-|-------------|---------------------|------|-----------|
-| `--address` | an Ethereum address | hex  | yes       |
+| option    | description         | type | mandatory |
+|-----------|---------------------|------|-----------|
+| `address` | an Ethereum address | hex  | yes       |
 
 Example: `$ et reverse --address=0xa0400ba66b4fe0b13bb909abfd377596c02b6733`
 
@@ -277,10 +284,10 @@ Convert wei to any other unit (eg. gwei, ether, etc)
 
 Usage: `$ et from-wei [options]`
 
-| option    | description                                                                                                                                      | type   | mandatory |
-|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--value` | wei                                                                                                                                              | bigint | yes       |
-| `--to`    | the unit you want to convert `--value` into. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
+| option  | description                                                                                                                                      | type   | mandatory |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `value` | wei                                                                                                                                              | bigint | yes       |
+| `to`    | the unit you want to convert `--value` into. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
 
 Example: `$ et from-wei --value=9000000000 --to=gwei`
 
@@ -290,10 +297,10 @@ Convert any unit (eg. gwei, ether, etc) to wei.
 
 Usage: `$ et to-wei [options]`
 
-| option    | description                                                                                                                   | type   | mandatory |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--value` | any numerical value                                                                                                           | float  | yes       |
-| `--from`  | the unit `--value` is in. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
+| option  | description                                                                                                                   | type   | mandatory |
+|---------|-------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `value` | any numerical value                                                                                                           | float  | yes       |
+| `from`  | the unit `--value` is in. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
 
 Example: `$ et to-wei --from=gwei --value=9`
 
@@ -303,9 +310,9 @@ Convert an address to a [checksummed](https://eips.ethereum.org/EIPS/eip-55) add
 
 Usage: `$ et checksum [options]`
 
-| option      | description                      | type   | mandatory |
-|-------------|----------------------------------|--------|-----------|
-| `--address` | an EOA or smart contract address | hex    | yes       |
+| option    | description                      | type   | mandatory |
+|-----------|----------------------------------|--------|-----------|
+| `address` | an EOA or smart contract address | hex    | yes       |
 
 Example: `$ et checksum --address=0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed`
 
@@ -315,10 +322,10 @@ Hash any input, using the [keccak-256](https://en.wikipedia.org/wiki/SHA-3) dige
 
 Usage: `$ et keccak256 [options]`
 
-| option   | description            | type   | mandatory |
-|----------|------------------------|--------|-----------|
-| `--hex`  | hex-encoded bytes, or  | hex    | no        |
-| `--text` | a UTF-8 encoded string | string | no        |
+| option | description            | type   | mandatory |
+|--------|------------------------|--------|-----------|
+| `hex`  | hex-encoded bytes, or  | hex    | no        |
+| `text` | a UTF-8 encoded string | string | no        |
 
 Example: `$ et keccak256 --text="Hello World"`
 
@@ -328,12 +335,12 @@ Convert a token balance from a float to a bigint.
 
 Usage: `$ et scale [options]`
 
-| option      | description                                                                                  | type   | mandatory |
-|-------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`   | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--symbol`  | a ERC-20 token symbol, or                                                                    | string | no        |
-| `--address` | a ERC-20 token address, and                                                                  | hex    | no        |
-| `--amount`  | a token balance                                                                              | float  | yes       |
+| option    | description                                                                                  | type   | mandatory |
+|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`   | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `symbol`  | a ERC-20 token symbol, or                                                                    | string | no        |
+| `address` | a ERC-20 token address, and                                                                  | hex    | no        |
+| `amount`  | a token balance                                                                              | float  | yes       |
 
 Example: `$ et scale --symbol=DAI --amount=99.99`
 
@@ -343,12 +350,12 @@ Convert a token balance from a bigint to a float.
 
 Usage: `$ et unscale [options]`
 
-| option      | description                                                                                  | type   | mandatory |
-|-------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`   | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--symbol`  | a ERC-20 token symbol, or                                                                    | string | no        |
-| `--address` | a ERC-20 token address, and                                                                  | hex    | no        |
-| `--amount`  | a token balance                                                                              | bigint | yes       |
+| option    | description                                                                                  | type   | mandatory |
+|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain`   | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `symbol`  | a ERC-20 token symbol, or                                                                    | string | no        |
+| `address` | a ERC-20 token address, and                                                                  | hex    | no        |
+| `amount`  | a token balance                                                                              | bigint | yes       |
 
 Example: `$ et unscale --symbol=DAI --amount=99990000000000000000`
 
