@@ -1,5 +1,7 @@
 # ethereum-terminal
 
+<style>table th:first-of-type {width: 100px}</style>
+
 Ethereum Terminal (ET) is an EVM-compatible toolbox chock-full of commands for developers, wallets, and savvy users.
 
 Usage: `$ et [command] [options]`
@@ -125,10 +127,10 @@ Get your account's balance in wei.
 
 Usage: `$ et get-balance [options]`
 
-| option       | description                                                                                  | type   | mandatory |
-|--------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`    | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--owner`    | address of the owner                                                                         | hex    | yes       |
+| option    | description                                                                                  | type   | mandatory |
+|-----------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `--chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `--owner` | address of the owner                                                                         | hex    | yes       |
 
 Example: `$ et get-balance --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 
@@ -232,10 +234,10 @@ Usage: `$ et get-price [options]`
 
 Get [Chainlink](https://chain.link/)'s oracle price for an asset in USD.
 
-| option      | description                                                                                  | type   | mandatory |
-|-------------|----------------------------------------------------------------------------------------------|--------|-----------|
-| `--chain`   | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
-| `--symbol`  | a token symbol                                                                               | string | yes       |
+| option     | description                                                                                  | type   | mandatory |
+|------------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `--chain`  | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `--symbol` | a token symbol                                                                               | string | yes       |
 
 Example: `$ et get-price --symbol=ETH`
 
@@ -275,10 +277,10 @@ Convert wei to any other unit (eg. gwei, ether, etc)
 
 Usage: `$ et from-wei [options]`
 
-| option     | description                                                                                                                                      | type   | mandatory |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--value`  | wei                                                                                                                                              | bigint | yes       |
-| `--to`     | the unit you want to convert `--value` into. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
+| option    | description                                                                                                                                      | type   | mandatory |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `--value` | wei                                                                                                                                              | bigint | yes       |
+| `--to`    | the unit you want to convert `--value` into. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
 
 Example: `$ et from-wei --value=9000000000 --to=gwei`
 
@@ -288,10 +290,10 @@ Convert any unit (eg. gwei, ether, etc) to wei.
 
 Usage: `$ et to-wei [options]`
 
-| option     | description                                                                                                                   | type   | mandatory |
-|------------|-------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
-| `--value`  | any numerical value                                                                                                           | float  | yes       |
-| `--from`   | the unit `--value` is in. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
+| option    | description                                                                                                                   | type   | mandatory |
+|-----------|-------------------------------------------------------------------------------------------------------------------------------|--------|-----------|
+| `--value` | any numerical value                                                                                                           | float  | yes       |
+| `--from`  | the unit `--value` is in. valid units are [here](https://github.com/svanas/delphereum/blob/master/web3.eth.utils.pas#L42-L65) | string | yes       |
 
 Example: `$ et to-wei --from=gwei --value=9`
 
