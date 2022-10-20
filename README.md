@@ -27,10 +27,10 @@ Use `$ et [command] --help` for more information about a command.
 
 ## privacy & security
 
-| command | description                                                                                                                                               |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| revoke  | un-approve every EOA plus every smart contract that is a proxy (not immutable), or isn’t [Etherscan](https://etherscan.io/)-verified, or has an admin key |
-| detect  | detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned)                              |
+| command           | description                                                                                                                                               |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [revoke](#revoke) | un-approve every EOA plus every smart contract that is a proxy (not immutable), or isn’t [Etherscan](https://etherscan.io/)-verified, or has an admin key |
+| [detect](#detect) | detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned)                              |
 | migrate | transfer all your tokens to a new, fresh wallet if your private key is compromised or you want to revoke every token approval                             |
 
 Note: if a command needs a private key to complete, it will return one or more unsigned transactions plus user-friendly metadata about the transactions. This allows for wallets to prompt the user, display something nice, sign the transactions, and send the raw transactions to the nearest RPC endpoint.
@@ -73,6 +73,56 @@ Note: because ET can distribute via [BitTorrent](https://en.wikipedia.org/wiki/B
 | [scale](#scale)         | convert a token balance from a float to a bigint                                                  |
 | [unscale](#unscale)     | convert a token balance from a bigint to a float                                                  |
 
+### revoke
+
+Un-approve every EOA plus every smart contract that is a proxy (not immutable), or isn’t [Etherscan](https://etherscan.io/)-verified, or has an admin key.
+
+Usage: `$ et revoke [options]`
+
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `owner` | your wallet address                                                                          | hex    | yes       |
+
+Example: `$ et revoke --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
+
+This command will scan for every...
+* ERC-20 token approval, and
+* ERC-721 token approval, and
+* ERC-1155 token approval.
+
+### detect
+
+Detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned).
+
+Usage: `$ et detect [options]`
+
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `owner` | your wallet address                                                                          | hex    | yes       |
+
+Example: `$ et detect --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
+
+### migrate
+
+Transfer all your tokens to a new, fresh wallet if your private key is compromised or you want to revoke every token approval.
+
+Usage: `$ et migrate [options]`
+
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `from`  | your old wallet address                                                                      | hex    | yes       |
+| `to`    | your new wallet address                                                                      | hex    | yes       |
+
+Example: `$ et migrate --from=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --to=0x542E0ec7e091D102086490CaCF42e67a4694D3DF`
+
+This command will scan for...
+* more than 5000 ERC-20 tokens on Ethereum, and
+* every ERC-721 and ERC-1155 token known to [OpenSea](https://opensea.io/), and
+* more than 30,000 [Uniswap v2](https://v2.info.uniswap.org/) LP tokens.
+
 ### get-apy
 
 Get the annual percentage yield for any [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract.
@@ -107,9 +157,9 @@ Usage: `$ et deposit [options]`
 
 Example: `$ et deposit --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --apy=highest --symbol=DAI`
 
-This example will approve `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s DAI and then deposits `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s enitire balance of DAI into a DeFi protocol with the highest APY on Ethereum.
+This example will approve `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s DAI and then deposit `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s entire balance of DAI into a DeFi protocol with the highest APY on Ethereum.
 
-The `deposit` command will return at least two unsigned transactions plus user-friendly metadata about the deposit. This allows for wallets to prompt the user, display something nice, and sign the transactions.
+The `deposit` command will return at one or two unsigned transactions plus user-friendly metadata about the deposit. This allows for wallets to prompt the user, display something nice, and sign the transactions.
 
 ### withdraw
 
