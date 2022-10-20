@@ -159,7 +159,7 @@ Example: `$ et deposit --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --apy=
 
 This example will approve `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s DAI and then deposit `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`'s entire balance of DAI into a DeFi protocol with the highest APY on Ethereum.
 
-The `deposit` command will return at one or two unsigned transactions plus user-friendly metadata about the deposit. This allows for wallets to prompt the user, display something nice, and sign the transactions.
+The `deposit` command will return one or two unsigned transactions plus user-friendly metadata about the deposit. This allows for wallets to prompt the user, display something nice, and sign the transactions.
 
 ### withdraw
 
