@@ -33,7 +33,7 @@ Use `$ et [command] --help` for more information about a command.
 | [detect](#detect)   | detect tainted coins in your wallet, and report the reason why they are high risk (for example: if the sender is sanctioned)                              |
 | [migrate](#migrate) | transfer all your tokens to a new, fresh wallet if your private key is compromised or you want to revoke every token approval                             |
 
-Note: if a command needs a private key to complete, it will return one or more unsigned transactions plus user-friendly metadata about the transactions. This allows for wallets to prompt the user, display something nice, sign the transactions, and send the raw transactions to the nearest RPC endpoint.
+Note: if a command needs a private key to complete, it will return one or more unsigned transactions plus user-friendly metadata about the transactions. This allows for wallets to prompt the user, display something nice, and sign the transactions.
 
 ## DeFi commands
 
@@ -47,19 +47,20 @@ Note: because ET can distribute via [BitTorrent](https://en.wikipedia.org/wiki/B
 
 ## miscellaneous on-chain commands
 
-| command                               | description                                                                        |
-|---------------------------------------|------------------------------------------------------------------------------------|
-| [get-balance](#get-balance)           | get your account's balance in wei                                                  |
-| [get-gas-price](#get-gas-price)       | get current gas price in wei                                                       |
-| [get-block-number](#get-block-number) | get current block number                                                           |
-| [get-transaction](#get-transaction)   | get a transaction's data                                                           |
-| [get-receipt](#get-receipt)           | get the receipt of a completed transaction                                         |
-| [get-reason](#get-reason)             | get the revert reason for a failed transaction                                     |
-| [open](#open)                         | open transaction in a block explorer                                               |
-| [cancel](#cancel)                     | cancel a pending transaction                                                       |
-| [get-price](#get-price)               | get [Chainlink](https://chain.link/)'s oracle price for an asset in USD            |
-| [resolve](#resolve)                   | resolve an [ENS](https://ens.domains/) name to an Ethereum address                 |
-| [reverse](#reverse)                   | reverse resolution from an Ethereum address to an [ENS](https://ens.domains/) name |
+| command                               | description                                                                                                        |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| [broadcast](#broadcast)               | broadcast signed transaction to [the nearest available RPC endpoint](https://github.com/svanas/ethereum-node-list) |
+| [get-balance](#get-balance)           | get your account's balance in wei                                                                                  |
+| [get-gas-price](#get-gas-price)       | get current gas price in wei                                                                                       |
+| [get-block-number](#get-block-number) | get current block number                                                                                           |
+| [get-transaction](#get-transaction)   | get a transaction's data                                                                                           |
+| [get-receipt](#get-receipt)           | get the receipt of a completed transaction                                                                         |
+| [get-reason](#get-reason)             | get the revert reason for a failed transaction                                                                     |
+| [open](#open)                         | open transaction in a block explorer                                                                               |
+| [cancel](#cancel)                     | cancel a pending transaction                                                                                       |
+| [get-price](#get-price)               | get [Chainlink](https://chain.link/)'s oracle price for an asset in USD                                            |
+| [resolve](#resolve)                   | resolve an [ENS](https://ens.domains/) name to an Ethereum address                                                 |
+| [reverse](#reverse)                   | reverse resolution from an Ethereum address to an [ENS](https://ens.domains/) name                                 |
 
 ## miscellaneous off-chain commands
 
@@ -177,6 +178,19 @@ Usage: `$ et withdraw [options]`
 | `amount`   | amount of the underlying asset, or your entire balance of LP tokens if omitted                                 | bigint | no        |
 
 Example: `$ et withdraw --contract=0x690E382baD9016F688Cfc18AF306e1fDD6CB28E8 --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
+
+### broadcast
+
+Broadcast signed transaction to [the nearest available RPC endpoint](https://github.com/svanas/ethereum-node-list) with the lowest latency.
+
+Usage: `$ et broadcast [options]`
+
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `raw`   | your signed transaction                                                                      | hex    | no        |
+
+Usage: `$ et broadcast --raw=0x`
 
 ### get-balance
 
