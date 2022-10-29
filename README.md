@@ -39,6 +39,7 @@ Note: if a command needs a private key to complete, it will return one or more u
 
 | command               | description                                                                                          |
 |-----------------------|------------------------------------------------------------------------------------------------------|
+| [airdrop](#airdrop)   | never miss an airdrop! if you are eligible to receive an airdrop, this command will claim them       |
 | [get-apy](#get-apy)   | get the annual percentage yield for any [EIP-4626](https://eips.ethereum.org/EIPS/eip-4626) contract |
 | [deposit](#deposit)   | deposit your idle stable asset into a DeFi protocol with the highest APY or the lowest risk          |
 | [withdraw](#withdraw) | burn your LP tokens and claim the underlying asset                                                   |
@@ -123,6 +124,19 @@ This command will scan for...
 * more than 5000 ERC-20 tokens on Ethereum, and
 * every ERC-721 and ERC-1155 token known to [OpenSea](https://opensea.io/), and
 * more than 30,000 [Uniswap v2](https://v2.info.uniswap.org/) LP tokens.
+
+### airdrop
+
+Never miss an airdrop! If you are eligible to receive an airdrop, this command will claim them.
+
+Usage: `$ et airdrop [options]`
+
+| option  | description                                                                                  | type   | mandatory |
+|---------|----------------------------------------------------------------------------------------------|--------|-----------|
+| `chain` | a [chain id](https://chainlist.org/) (defaults to [Ethereum](https://chainlist.org/chain/1)) | int    | no        |
+| `owner` | your wallet address                                                                          | hex    | yes       |
+
+Example: `$ et airdrop --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 
 ### get-apy
 
