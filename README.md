@@ -88,10 +88,10 @@ Usage: `$ et revoke [options]`
 
 Example: `$ et revoke --owner=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
 
-This command will scan for every...
-* ERC-20 token approval, and
-* ERC-721 token approval, and
-* ERC-1155 token approval.
+This command will scan for...
+* every ERC-20 token approval, and
+* every ERC-721 token approval, and
+* every ERC-1155 token approval.
 
 ### detect
 
